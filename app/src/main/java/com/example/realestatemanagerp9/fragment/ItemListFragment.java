@@ -1,3 +1,4 @@
+/*
 package com.example.realestatemanagerp9.fragment;
 
 import android.os.Build;
@@ -23,6 +24,7 @@ import com.example.realestatemanagerp9.databinding.ItemListContentBinding;
 
 import java.util.List;
 
+*/
 /**
  * A fragment representing a list of Items. This fragment
  * has different presentations for handset and larger screen devices. On
@@ -30,15 +32,18 @@ import java.util.List;
  * lead to a {@link ItemDetailFragment} representing
  * item details. On larger screens, the Navigation controller presents the list of items and
  * item details side-by-side using two vertical panes.
- */
+ *//*
+
 public class ItemListFragment extends Fragment {
 
-    /**
+    */
+/**
      * Method to intercept global key events in the
      * item list fragment to trigger keyboard shortcuts
      * Currently provides a toast when Ctrl + Z and Ctrl + F
      * are triggered
-     */
+     *//*
+
     ViewCompat.OnUnhandledKeyEventListenerCompat unhandledKeyEventListenerCompat = (v, event) -> {
         if (event.getKeyCode() == KeyEvent.KEYCODE_Z && event.isCtrlPressed()) {
             Toast.makeText(
@@ -80,9 +85,11 @@ public class ItemListFragment extends Fragment {
         // layout configuration (layout, layout-sw600dp)
         View itemDetailFragmentContainer = view.findViewById(R.id.item_detail_nav_container);
 
-        /* Click Listener to trigger navigation based on if you have
+        */
+/* Click Listener to trigger navigation based on if you have
          * a single pane layout or two pane layout
-         */
+         *//*
+
         View.OnClickListener onClickListener = itemView -> {
             PlaceholderContent.PlaceholderItem item =
                     (PlaceholderContent.PlaceholderItem) itemView.getTag();
@@ -96,11 +103,13 @@ public class ItemListFragment extends Fragment {
             }
         };
 
-        /*
+        */
+/*
          * Context click listener to handle Right click events
          * from mice and trackpad input to provide a more native
          * experience on larger screen devices
-         */
+         *//*
+
         View.OnContextClickListener onContextClickListener = itemView -> {
             PlaceholderContent.PlaceholderItem item =
                     (PlaceholderContent.PlaceholderItem) itemView.getTag();
@@ -161,7 +170,7 @@ public class ItemListFragment extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mContentView.setText(mValues.get(position).type);
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -187,4 +196,4 @@ public class ItemListFragment extends Fragment {
 
         }
     }
-}
+}*/

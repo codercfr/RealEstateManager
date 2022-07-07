@@ -1,5 +1,8 @@
 package com.example.realestatemanagerp9.placeholder;
 
+import com.example.realestatemanagerp9.DummyLogement;
+import com.example.realestatemanagerp9.database.dao.RealEstateManagerDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,10 +21,13 @@ public class PlaceholderContent {
      */
     public static final List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
 
+
     /**
      * A map of sample (placeholder) items, by ID.
      */
     public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
+
+    private List<DummyLogement> logements =new ArrayList<>();
 
     private static final int COUNT = 25;
 
@@ -55,18 +61,18 @@ public class PlaceholderContent {
      */
     public static class PlaceholderItem {
         public final String id;
-        public final String content;
+        public final String type;
         public final String details;
 
         public PlaceholderItem(String id, String content, String details) {
             this.id = id;
-            this.content = content;
+            this.type = content;
             this.details = details;
         }
 
         @Override
         public String toString() {
-            return content;
+            return type;
         }
     }
 }

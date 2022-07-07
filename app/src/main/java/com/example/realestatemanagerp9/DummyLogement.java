@@ -1,22 +1,26 @@
 package com.example.realestatemanagerp9;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-@Entity
+@Entity(tableName = "DummyLogement")
 public class DummyLogement {
-
+    @PrimaryKey(autoGenerate = true)
     public int id;
+
+
     public String type;
     public String city;
     public int price;
+    //transformer la les photos par une liste de string pour ROOM
     public String photos;
     public String description;
     public int roomNumbers;
-    public int surace;
+    public int surface;
     public int bathroomNumbers;
     public int bedroomNumbers;
     public String Location;
@@ -80,11 +84,11 @@ public class DummyLogement {
     }
 
     public int getSurace() {
-        return surace;
+        return surface;
     }
 
     public void setSurace(int surace) {
-        this.surace = surace;
+        this.surface = surace;
     }
 
     public int getBathroomNumbers() {

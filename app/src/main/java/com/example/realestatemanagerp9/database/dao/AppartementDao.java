@@ -2,6 +2,7 @@ package com.example.realestatemanagerp9.database.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
@@ -17,7 +18,7 @@ public interface AppartementDao {
 
 
     @Query("SELECT * FROM DummyLogement")
-    List<DummyLogement> getAllTask();
+    List<DummyLogement> getAllLogements();
 
     @Insert
     void insertAllData(DummyLogement task);
@@ -26,5 +27,5 @@ public interface AppartementDao {
     void updateItem(DummyLogement item);
 
     @Delete
-    void deleteTask(DummyLogement itemId);
+    void deleteLogement(DummyLogement itemId);
 }

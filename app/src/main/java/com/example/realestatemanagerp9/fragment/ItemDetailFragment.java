@@ -1,3 +1,4 @@
+/*
 package com.example.realestatemanagerp9.fragment;
 
 import android.os.Bundle;
@@ -14,30 +15,38 @@ import com.example.realestatemanagerp9.databinding.FragmentItemDetailBinding;
 import com.example.realestatemanagerp9.placeholder.PlaceholderContent;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+*/
 /**
  * A fragment representing a single Item detail screen.
  * This fragment is either contained in a {@link ItemListFragment}
  * in two-pane mode (on larger screen devices) or self-contained
  * on handsets.
- */
+ *//*
+
 public class ItemDetailFragment extends Fragment {
 
-    /**
+    */
+/**
      * The fragment argument representing the item ID that this fragment
      * represents.
-     */
+     *//*
+
     public static final String ARG_ITEM_ID = "item_id";
 
-    /**
+    */
+/**
      * The placeholder content this fragment is presenting.
-     */
+     *//*
+
     private PlaceholderContent.PlaceholderItem mItem;
     private FragmentItemDetailBinding binding;
 
-    /**
+    */
+/**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
-     */
+     *//*
+
     public ItemDetailFragment() {
     }
 
@@ -67,7 +76,7 @@ public class ItemDetailFragment extends Fragment {
             TextView textView = binding.itemDetail;
             textView.setText(mItem.details);
             if (toolbarLayout != null) {
-                toolbarLayout.setTitle(mItem.content);
+                toolbarLayout.setTitle(mItem.type);
             }
         }
 
@@ -79,4 +88,4 @@ public class ItemDetailFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-}
+}*/
