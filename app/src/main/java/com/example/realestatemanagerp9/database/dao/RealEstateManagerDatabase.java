@@ -1,15 +1,14 @@
 package com.example.realestatemanagerp9.database.dao;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
+
 import android.content.ContentValues;
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.realestatemanagerp9.DummyLogement;
 
@@ -17,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 
 @Database(entities = {DummyLogement.class}, version = 1, exportSchema = false)
-public abstract class RealEstateManagerDatabase extends RoomDatabase{
+public abstract class RealEstateManagerDatabase extends RoomDatabase {
 
 
     // --- SINGLETON ---
@@ -43,7 +42,6 @@ public abstract class RealEstateManagerDatabase extends RoomDatabase{
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
-
                 ContentValues contentValues1 = new ContentValues();
                 contentValues1.put("id", 1);
                 contentValues1.put("type", "Flat");
@@ -60,8 +58,6 @@ public abstract class RealEstateManagerDatabase extends RoomDatabase{
                         "New York " +
                         "Ny 102102" +
                         "United States");
-
-
 //
             }
         };

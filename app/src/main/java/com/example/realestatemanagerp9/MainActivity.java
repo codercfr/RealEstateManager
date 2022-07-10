@@ -31,12 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         adapter= new LogementAdapter();
 
-        this.configureTextViewMain();
-        this.configureTextViewQuantity();
         recyclerView=findViewById(R.id.recyclerview);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
+        //will have to cheeck if the dblist is empty or not.
         loadTaskList();
 
 
@@ -52,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadTaskList() {
         RealEstateManagerDatabase db = RealEstateManagerDatabase.getDbInstance(getApplicationContext());
+        DummyLogement logement = new DummyLogement();
+        logement.id=1;
+        logement.price=180000;
+        logement.type="Flat";
+        logement.city="Manathan";
+        db.AppartementDao().insertAllData(logement);
         List<DummyLogement> logements = db.AppartementDao().getAllLogements();
         adapter.updateLogements(logements);
     }

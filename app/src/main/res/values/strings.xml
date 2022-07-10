@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">RealEstateManagerP9</string>
+    <string name="type_logement">Type</string>
+    <string name="type_price">Price</string>
+    <string name="type_city">City</string>
+    <string name="type_description">Description</string>
+    <string name="type_roomNumbers">RoomNumbers</string>
+    <string name="type_surface">Surface</string>
+    <string name="type_bathroomNumbers">BathroomNumbers</string>
+    <string name="type_bedroomNumbers">BedroomNumbers</string>
+    <string name="type_location">Location</string>
 </resources>
