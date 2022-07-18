@@ -6,6 +6,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
@@ -50,7 +51,7 @@ public abstract class RealEstateManagerDatabase extends RoomDatabase {
                 contentValues1.put("photos", "");
                 contentValues1.put("description", "it's a flat in Manhattan");
                 contentValues1.put("roomNumbers", 8);
-                contentValues1.put("surace", 750);
+                contentValues1.put("surface", 750);
                 contentValues1.put("bathroomNumbers", 2);
                 contentValues1.put("bedroomNumbers", 4);
                 contentValues1.put("Location", "740 Park Avenue" +
@@ -59,7 +60,9 @@ public abstract class RealEstateManagerDatabase extends RoomDatabase {
                         "Ny 102102" +
                         "United States");
 //
+                db.insert("DummyLogement", OnConflictStrategy.IGNORE, contentValues1);
             }
         };
+
     }
 }

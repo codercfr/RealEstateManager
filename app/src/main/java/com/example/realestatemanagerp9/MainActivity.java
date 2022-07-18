@@ -1,30 +1,32 @@
 package com.example.realestatemanagerp9;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.realestatemanagerp9.adapter.LogementAdapter;
 import com.example.realestatemanagerp9.database.dao.RealEstateManagerDatabase;
-import com.example.realestatemanagerp9.fragment.AddLogementFragment;
 import com.google.android.material.navigation.NavigationView;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.realestatemanagerp9.Utils.isNetworkConnected;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private NavigationView navigationView;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
+
+        //NetWork check
+
         //will have to cheeck if the dblist is empty or not.
+
+
         loadTaskList();
         configureNavigationView();
 
@@ -58,26 +66,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        isNetworkAvailable(getApplication());
 
-
-        Utils network = new Utils();
+        /*Utils network = new Utils();
         network.isInternetAvailable(getApplicationContext());
         // Check network connection
         if (isNetworkConnected) {
             // Internet Connected
         } else {
             // Not Connected
-        }
+        }*/
     }
 
     private void loadTaskList() {
         RealEstateManagerDatabase db = RealEstateManagerDatabase.getDbInstance(getApplicationContext());
-        DummyLogement logement = new DummyLogement();
-        logement.id=1;
-        logement.price=180000;
-        logement.type="Flat";
-        logement.city="Manathan";
-        db.AppartementDao().insertAllData(logement);
         List<DummyLogement> logements = db.AppartementDao().getAllLogements();
         adapter.updateLogements(logements);
     }
@@ -94,17 +96,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
-        // 4 - Handle Navigation Item Click
         int id = item.getItemId();
-
         if (id == R.id.lunch_add_logement) {
-            Fragment fragment = new AddLogementFragment();
-            FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.main_view,fragment);
-            transaction.commit();
+            startActivity(new Intent(MainActivity.this,AddLogementActivity.class));
         }
         this.drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -114,6 +112,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    private Boolean isNetworkAvailable(Application application) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Network nw = connectivityManager.getActiveNetwork();
+            if (nw == null) return false;
+            NetworkCapabilities actNw = connectivityManager.getNetworkCapabilities(nw);
+            return actNw != null && (actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH));
+        } else {
+            NetworkInfo nwInfo = connectivityManager.getActiveNetworkInfo();
+            return nwInfo != null && nwInfo.isConnected();
+        }
+    }
+
 
 
 }
