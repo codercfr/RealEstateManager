@@ -23,7 +23,7 @@ public class LogementAdapter extends RecyclerView.Adapter<LogementAdapter.ViewHo
 
 
     private List<DummyLogement> logements =new ArrayList<>();
-
+    int selected_position = 0;
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_content, parent, false);
@@ -33,6 +33,7 @@ public class LogementAdapter extends RecyclerView.Adapter<LogementAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(LogementAdapter.ViewHolder holder, int position) {
+        holder.itemView.setSelected(selected_position == position);
         DummyLogement dummyLogement = logements.get(position);
 
         holder.city.setText(dummyLogement.getCity());
@@ -42,7 +43,19 @@ public class LogementAdapter extends RecyclerView.Adapter<LogementAdapter.ViewHo
         //Start the detail activity.
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), DetailLogementActivity.class);
-            intent.putExtra("ID",dummyLogement.getId());
+            //add all the extra for the infos i need
+            intent.putExtra("TYPE",dummyLogement.getType());
+            intent.putExtra("CITY",dummyLogement.getCity());
+            intent.putExtra("PRICE",dummyLogement.getPrice());
+            //intent.putExtra("PHOTOS",dummyLogement.getDescription());
+            intent.putExtra("DESCRIPTION",dummyLogement.getDescription());
+            intent.putExtra("ROOMNUMBERS",dummyLogement.getRoomNumbers());
+            intent.putExtra("SURFACE",dummyLogement.getSurace());
+            intent.putExtra("BATHROOMNUMBERS",dummyLogement.getBathroomNumbers());
+            intent.putExtra("BEDROOMNUBMERS",dummyLogement.getBedroomNumbers());
+            intent.putExtra("LOCATION",dummyLogement.getLocation());
+
+
             try {
                 view.getContext().startActivity(intent);
             }
