@@ -2,6 +2,7 @@ package com.example.realestatemanagerp9.adapter;
 
 import android.annotation.SuppressLint;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.realestatemanagerp9.DetailLogementActivity;
 import com.example.realestatemanagerp9.DummyLogement;
 import com.example.realestatemanagerp9.R;
 
@@ -37,6 +39,17 @@ public class LogementAdapter extends RecyclerView.Adapter<LogementAdapter.ViewHo
         holder.type.setText(dummyLogement.getType());
         holder.price.setText(Integer.toString(dummyLogement.getPrice()));
 
+        //Start the detail activity.
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), DetailLogementActivity.class);
+            intent.putExtra("ID",dummyLogement.getId());
+            try {
+                view.getContext().startActivity(intent);
+            }
+            catch (Exception exception){
+                exception.printStackTrace();
+            }
+        });
     }
 
     public void updateLogements(@NonNull final List<DummyLogement> logements) {

@@ -10,6 +10,8 @@
     <string name="type_bedroomNumbers">BedroomNumbers</string>
     <string name="type_location">Location</string>
     <string name="btn_add_logement">Add Logement</string>
+    <string name="media">Media</string>
+    <string name="description">Description</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
